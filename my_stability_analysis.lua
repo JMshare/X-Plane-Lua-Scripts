@@ -12,7 +12,7 @@
 
 -- time
 dataref("t", "sim/time/total_running_time_sec", 'readonly') -- simulation time
-dataref("cycle_dump", "sim/network/dataout/dump_next_cycle", 'writable') -- bool perform Cycle Dump
+-- dataref("cycle_dump", "sim/network/dataout/dump_next_cycle", 'writable') -- bool perform Cycle Dump, only up to v9
 
 -- euler coordinates representing the orientation of the aircraft (degrees)
 dataref("psi", "sim/flightmodel/position/psi", "readonly") -- yaw angle
@@ -654,7 +654,7 @@ function hold()
     Q = temp_Q
     R = temp_R
 
-    cycle_dump = 1;
+    --cycle_dump = 1
     
 end
 
@@ -804,7 +804,7 @@ function calculate()
       mode = 'off'
       query = 'off'
 
-      cycle_dump = 0;
+      --cycle_dump = 0
  end
 
 function write_forces()
@@ -1024,7 +1024,7 @@ function perturbate()
     tquery = t
     iter_perturb = iter
 
-    cycle_dump = 1; -- run the cycle dump
+    --cycle_dump = 1 -- run the cycle dump
     
 end
 
