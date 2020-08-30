@@ -13,6 +13,8 @@
 -- time
 dataref("t", "sim/time/total_running_time_sec", 'readonly') -- simulation time
 -- dataref("cycle_dump", "sim/network/dataout/dump_next_cycle", 'writable') -- bool perform Cycle Dump, only up to v9
+dataref("num_bladesL", "sim/aircraft/prop/acf_num_blades", "writable", 1) -- L prop num blades
+dataref("num_bladesR", "sim/aircraft/prop/acf_num_blades", "writable", 2) -- R prop num blades
 
 -- euler coordinates representing the orientation of the aircraft (degrees)
 dataref("psi", "sim/flightmodel/position/psi", "readonly") -- yaw angle
@@ -354,6 +356,17 @@ function mixer()
     right_elev_def = RE
     left_rudder_def = LR
     right_rudder_def = RR
+
+    if throttleL < 0.1 then
+      num_bladesL = 0.1
+    else
+      num_bladesL = 3
+    end
+    if throttleR < 0.1 then
+      num_bladesR = 0.1
+    else
+      num_bladesR = 3
+    end
 end
 function control_loop()
     if dmode=='off' then
